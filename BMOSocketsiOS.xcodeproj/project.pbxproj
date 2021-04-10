@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		552699AF261BD1E800BFA9C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 552699AE261BD1E800BFA9C6 /* AppDelegate.m */; };
 		552699B2261BD1E800BFA9C6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 552699B1261BD1E800BFA9C6 /* SceneDelegate.m */; };
-		552699B5261BD1E800BFA9C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552699B4261BD1E800BFA9C6 /* ViewController.m */; };
+		552699B5261BD1E800BFA9C6 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 552699B4261BD1E800BFA9C6 /* ViewController.mm */; };
 		552699B8261BD1E800BFA9C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552699B6261BD1E800BFA9C6 /* Main.storyboard */; };
 		552699BA261BD1E800BFA9C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 552699B9261BD1E800BFA9C6 /* Assets.xcassets */; };
 		552699BD261BD1E800BFA9C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552699BB261BD1E800BFA9C6 /* LaunchScreen.storyboard */; };
 		552699C0261BD1E800BFA9C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 552699BF261BD1E800BFA9C6 /* main.m */; };
+		55A3C986261D50BA00522B20 /* BMOSocketiOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 55A3C984261D50BA00522B20 /* BMOSocketiOS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,12 +24,14 @@
 		552699B0261BD1E800BFA9C6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		552699B1261BD1E800BFA9C6 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		552699B3261BD1E800BFA9C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		552699B4261BD1E800BFA9C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		552699B4261BD1E800BFA9C6 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		552699B7261BD1E800BFA9C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		552699B9261BD1E800BFA9C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		552699BC261BD1E800BFA9C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		552699BE261BD1E800BFA9C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		552699BF261BD1E800BFA9C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		55A3C984261D50BA00522B20 /* BMOSocketiOS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BMOSocketiOS.cpp; sourceTree = "<group>"; };
+		55A3C985261D50BA00522B20 /* BMOSocketiOS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BMOSocketiOS.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +69,14 @@
 				552699B0261BD1E800BFA9C6 /* SceneDelegate.h */,
 				552699B1261BD1E800BFA9C6 /* SceneDelegate.m */,
 				552699B3261BD1E800BFA9C6 /* ViewController.h */,
-				552699B4261BD1E800BFA9C6 /* ViewController.m */,
+				552699B4261BD1E800BFA9C6 /* ViewController.mm */,
 				552699B6261BD1E800BFA9C6 /* Main.storyboard */,
 				552699B9261BD1E800BFA9C6 /* Assets.xcassets */,
 				552699BB261BD1E800BFA9C6 /* LaunchScreen.storyboard */,
 				552699BE261BD1E800BFA9C6 /* Info.plist */,
 				552699BF261BD1E800BFA9C6 /* main.m */,
+				55A3C984261D50BA00522B20 /* BMOSocketiOS.cpp */,
+				55A3C985261D50BA00522B20 /* BMOSocketiOS.hpp */,
 			);
 			path = BMOSocketsiOS;
 			sourceTree = "<group>";
@@ -145,9 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				552699B5261BD1E800BFA9C6 /* ViewController.m in Sources */,
+				552699B5261BD1E800BFA9C6 /* ViewController.mm in Sources */,
 				552699AF261BD1E800BFA9C6 /* AppDelegate.m in Sources */,
 				552699C0261BD1E800BFA9C6 /* main.m in Sources */,
+				55A3C986261D50BA00522B20 /* BMOSocketiOS.cpp in Sources */,
 				552699B2261BD1E800BFA9C6 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
