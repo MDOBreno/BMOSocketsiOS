@@ -16,6 +16,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *tvTextView;
 
+
+
+
 @end
 
 @implementation ViewController
@@ -24,27 +27,16 @@
 
 
 
+BMOSocketiOS *bmo;
 
 
 
-
-
-void cppLogToTextView(BMOSocketiOS *bmo){
-    while (true) {
-        if (!(bmo->getSs()).empty()) {
-            NSLog([NSString stringWithUTF8String:(bmo->popSs()).c_str()]);
-            //(id) tvTextView = [NSString stringWithUTF8String:(bmo->popSs()).c_str()] ;
-        }
-    }
-}
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
     
     
     
@@ -62,27 +54,49 @@ void cppLogToTextView(BMOSocketiOS *bmo){
     };
     int opcao = 1;
     
-    BMOSocketiOS bmo = BMOSocketiOS(saddr, opcao);
+    //BMOSocketiOS bmo = BMOSocketiOS(saddr, opcao);
+    std::shared_ptr<BMOSocketiOS> bmoShared{new BMOSocketiOS(saddr, opcao)};
     
     
     // AF_INET=ipv4      e   AF_INET6=ipv6
     // SOCK_STREAM=TCP   e   SOCK_DGRAM=UDP
     // O terceiro argumento é para se desejassemos especificar algum protocolo
-    int socketServer = bmo.criarSocketServidor(AF_INET, SOCK_STREAM, 0);
+    int socketServer = bmoShared->criarSocketServidor(AF_INET, SOCK_STREAM, 0);
     if (socketServer == -1) {
-        bmo.imprimir("Não foi possível criar o Socket! Saindo", true);
+        bmoShared->imprimir("Não foi possível criar o Socket! Saindo", true);
         return;
     }
     
     
     
-    
     // Thread cppLogToTextView in a function pointer
-    std::thread threadLogToTextView(cppLogToTextView, &bmo);
+    std::weak_ptr<BMOSocketiOS> weakBmo(bmoShared->shared_from_this());
+    //__weak __typeof__(BMOSocketiOS *) weakBmo = bmoShared;
+    [self performBlockInBackground:^{
+        auto strongBmo = weakBmo.lock();
+        //std::shared_ptr<BMOSocketiOS> strongBmo{weakBmo.lock()};
+        if (strongBmo) {
+            //__typeof__(BMOSocketiOS *) strongBmo = weakBmo;
+            while (true) {
+                if (!(strongBmo->getSs()).empty()) {
+                    NSLog(@"%@", [NSString stringWithUTF8String:(strongBmo->popSs()).c_str()]);
+                    //(id) tvTextView = [NSString stringWithUTF8String:(bmo->popSs()).c_str()] ;
+                }
+            }
+        }
+    }];
+    
+    
+    
+    // Thread for startSocketServidor
+    [self performBlockInBackground:^{
+        auto strongBmo = weakBmo.lock();
+        (strongBmo->startSocketServidor(portaSocketServidor, SOMAXCONN, 4096));
+    }];
     
     
     // Define startSocketServidor in a Lambda Expression
-    auto startSocketServidor = [=](BMOSocketiOS *bmo, int portaSocketServidor) {
+    /*auto startSocketServidor = [=](BMOSocketiOS *bmo, int portaSocketServidor) {
         (bmo->startSocketServidor(portaSocketServidor, SOMAXCONN, 4096));
     };
     // Thread for startSocketServidor
@@ -92,14 +106,19 @@ void cppLogToTextView(BMOSocketiOS *bmo){
     
     
   
-    threadLogToTextView.join();
     
     
-    threadSocketServidor.join();
+    threadSocketServidor.join();*/
+    
+    
     
 }
 
-
+- (void)performBlockInBackground:(void (^)())block {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        block();
+    });
+}
 
 
 

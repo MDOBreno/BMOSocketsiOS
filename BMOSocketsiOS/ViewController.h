@@ -10,6 +10,10 @@
 @interface ViewController : UIViewController
 
 
+// This property can only be used in Objective-C++ code
+#ifdef atributeBMOSocketiOS
+@property  (weak, nonatomic) BMOSocketiOS *bmo;
+#endif
 
 @end
 

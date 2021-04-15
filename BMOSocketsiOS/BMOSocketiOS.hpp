@@ -26,7 +26,7 @@
 #define PORTA 5000
 
 
-class BMOSocketiOS {
+class BMOSocketiOS: public std::enable_shared_from_this<BMOSocketiOS> {
     public:
         BMOSocketiOS(struct sockaddr_in saddrSizeInicial, int opcaoInicial);
         void setOpcao(int x);
